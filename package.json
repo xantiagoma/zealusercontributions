@@ -1,0 +1,18 @@
+{
+  "name": "zealusercontributions",
+  "version": "2.0.0",
+  "description": "Zeal User Contributions",
+  "repository": "git@github.com:xantiagoma/zealusercontributions.git",
+  "author": "Santiago Montoya <xantiagoma@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "^9.4.4",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  }
+}
