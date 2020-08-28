@@ -7,6 +7,7 @@ export default (req, res) => {
 
   getDocsets(name)
     .then((list) => {
+      res.setHeader("Content-Type", "application/xml");
       res.send(xmlify(list));
     })
     .catch((err) => {
