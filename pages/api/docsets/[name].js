@@ -5,8 +5,12 @@ export default (req, res) => {
     query: { name },
   } = req;
 
-  getDocsets(name)
+  // Zeal <= 0.6.1 assumes all feed urls have a .xml suffix
+  const trimmedName = name.endsWith('.xml') ? name.substr(0, name.length - 4) : name;
+
+  getDocsets(trimmedName)
     .then((list) => {
+      res.setHeader("Content-Type", "application/xml");
       res.send(xmlify(list));
     })
     .catch((err) => {
