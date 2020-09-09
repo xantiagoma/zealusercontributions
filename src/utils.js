@@ -1,3 +1,5 @@
+import { parse } from "json5";
+
 const isUndefined = (val) => val === undefined;
 
 const isEmpty = (obj) =>
@@ -9,6 +11,40 @@ const CDNs = ["", "sanfrancisco.", "newyork.", "london.", "frankfurt."];
 const truncate = (input, length) => {
   if (input.length > length) return input.substring(0, length) + "...";
   else return input;
+};
+
+const getCheatSheets = async (filterName) => {
+  const response = await fetch(
+    `https://kapeli.com/feeds/zzz/cheatsheets/cheat.json`
+  );
+  const text = await response.text();
+  const data = parse(text).cheatsheets || {};
+
+  let cheatsheets = data;
+
+  if (!isUndefined(filterName) && !isEmpty(filterName)) {
+    let t = {};
+    if (isUndefined(data[filterName]) || isEmpty(data[filterName])) {
+      t[filterName] = {};
+    } else {
+      t[filterName] = data[filterName];
+    }
+    cheatsheets = t;
+  }
+
+  const list = Object.keys(cheatsheets).map((key) => {
+    const val = cheatsheets[key];
+    const object = { ...val };
+    object.name = key;
+    object.archive = `${key}.tgz`;
+    object.urls = CDNs.map((city) => {
+      return `http://${city}kapeli.com/feeds/zzz/cheatsheets/${key}.tgz`;
+    });
+
+    return object;
+  });
+
+  return list;
 };
 
 const getDocsets = async (filterName) => {
@@ -36,9 +72,9 @@ const getDocsets = async (filterName) => {
     docsets = t;
   }
 
-  let list = Object.keys(docsets).map((key) => {
+  const list = Object.keys(docsets).map((key) => {
     const val = docsets[key];
-    let object = { ...val };
+    const object = { ...val };
     object.name = key;
     object.urls = CDNs.map((city) => {
       return `http://${city}kapeli.com/feeds/zzz/user_contributed/build/${key}/${val.archive}`;
@@ -77,4 +113,4 @@ const xmlify = (list) => {
     .join("\n");
 };
 
-export { getDocsets, truncate, xmlify };
+export { getDocsets, getCheatSheets, truncate, xmlify };

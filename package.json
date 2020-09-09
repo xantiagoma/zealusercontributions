@@ -12,6 +12,7 @@
     "heroku-postbuild": "npm run build"
   },
   "dependencies": {
+    "json5": "^2.1.3",
     "next": "^9.4.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",

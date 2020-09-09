@@ -1,10 +1,63 @@
 import Head from "next/head";
-import { getDocsets, truncate } from "../src/utils";
+import { getDocsets, truncate, getCheatSheets } from "../src/utils";
 
-const Home = ({ repos }) => (
+const Card = ({
+  name,
+  version,
+  "icon@2x": icon2x,
+  icon: icon1x,
+  author,
+  urls,
+  cheatsheet = false,
+}) => {
+  const icon = icon2x || icon1x;
+  const authorName = author && author.name;
+  const authorLink = author && author.link;
+  const type = cheatsheet ? "cheatsheets" : "docsets";
+  return (
+    <div href="#" className="card" key={name}>
+      <h3 title={name + " @ " + version}>
+        {!!icon && (
+          <>
+            <img
+              src={"data:image/png;base64," + icon}
+              alt={name + " icon"}
+              title={name + " icon"}
+            />
+            &nbsp;
+          </>
+        )}
+        {truncate(name, 20)} <br />
+        <small>version: {truncate(version, 7)}</small>
+      </h3>
+      {author && (
+        <p>
+          <strong>Author</strong>: <a href={authorLink}>{authorName}</a>
+        </p>
+      )}
+      <p>
+        <strong>Download</strong>:&nbsp;
+        {urls.map((url, index) => (
+          <a key={url} href={url} download={true}>
+            mirror#{index + 1}&nbsp;
+          </a>
+        ))}
+      </p>
+      <p>
+        <strong>Feed URL</strong>: <a href={`/api/${type}/` + name}>XML</a>
+      </p>
+      <p>
+        <strong>Feed URL (.xml)</strong>:{" "}
+        <a href={`/api/${type}/` + name + ".xml"}>XML</a>
+      </p>
+    </div>
+  );
+};
+
+const Home = ({ repos, cheatsheets }) => (
   <div className="container">
     <Head>
-      <title>Zeal User Contributions</title>
+      <title>Zeal User Contributions & Cheat Sheets</title>
       <meta
         name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
@@ -21,7 +74,7 @@ const Home = ({ repos }) => (
       />
       <meta
         name="description"
-        content="Non-Official Zeal User Contributions Repository - Create by xantiagoma"
+        content="Non-Official Zeal User Contributions & Cheat Sheets Repository - Create by xantiagoma"
       ></meta>
     </Head>
 
@@ -33,7 +86,7 @@ const Home = ({ repos }) => (
         Zeal User Contributions
       </h1>
       <p className="description">
-        Non-Official Zeal User Contributions Repository
+        Non-Official Zeal User Contributions (& Cheat Sheets) Repository
       </p>
       <code>
         Often Heroku's free hours are exceeded, please use{" "}
@@ -44,63 +97,17 @@ const Home = ({ repos }) => (
         </strong>{" "}
         instead.
       </code>
+      <h2>User Contributed:</h2>
       <div className="grid">
-        {repos.map(
-          ({
-            name,
-            version,
-            "icon@2x": icon2x,
-            icon: icon1x,
-            author,
-            urls,
-          }) => {
-            const icon = icon2x || icon1x;
-            const authorName = author && author.name;
-            const authorLink = author && author.link;
-            return (
-              <div href="#" className="card" key={name}>
-                <h3 title={name + " @ " + version}>
-                  {!!icon && (
-                    <>
-                      <img
-                        src={"data:image/png;base64," + icon}
-                        alt={name + " icon"}
-                        title={name + " icon"}
-                      />
-                      &nbsp;
-                    </>
-                  )}
-                  {truncate(name, 20)} <br />
-                  <small>version: {truncate(version, 7)}</small>
-                </h3>
-                {author && (
-                  <>
-                    <p>
-                      <strong>Author</strong>:{" "}
-                      <a href={authorLink}>{authorName}</a>
-                    </p>
-                    <p>
-                      <strong>Download</strong>:&nbsp;
-                      {urls.map((url, index) => (
-                        <a key={url} href={url} download={true}>
-                          mirror#{index + 1}&nbsp;
-                        </a>
-                      ))}
-                    </p>
-                    <p>
-                      <strong>Feed URL</strong>:{" "}
-                      <a href={"/api/docsets/" + name}>XML</a>
-                    </p>
-                    <p>
-                      <strong>Feed URL (.xml)</strong>:{" "}
-                      <a href={"/api/docsets/" + name + ".xml"}>XML</a>
-                    </p>
-                  </>
-                )}
-              </div>
-            );
-          }
-        )}
+        {repos.map((e) => (
+          <Card {...e} />
+        ))}
+      </div>
+      <h2>Cheat Sheets:</h2>
+      <div className="grid">
+        {cheatsheets.map((e) => (
+          <Card {...e} cheatsheet={true} />
+        ))}
       </div>
     </main>
 
@@ -115,7 +122,8 @@ const Home = ({ repos }) => (
 
 Home.getInitialProps = async () => {
   const repos = await getDocsets();
-  return { repos };
+  const cheatsheets = await getCheatSheets();
+  return { repos, cheatsheets };
 };
 
 export default Home;

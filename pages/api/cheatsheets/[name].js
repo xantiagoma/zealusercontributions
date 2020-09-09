@@ -1,4 +1,4 @@
-import { getDocsets, xmlify } from "../../../src/utils";
+import { xmlify, getCheatSheets } from "../../../src/utils";
 
 export default (req, res) => {
   const {
@@ -10,7 +10,7 @@ export default (req, res) => {
     ? name.substr(0, name.length - 4)
     : name;
 
-  getDocsets(trimmedName)
+  getCheatSheets(trimmedName)
     .then((list) => {
       res.setHeader("Content-Type", "application/xml");
       res.send(xmlify(list));

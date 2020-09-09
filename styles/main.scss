@@ -44,7 +44,7 @@ body {
 }
 
 main {
-  padding: 5rem 0;
+  padding: 5rem 0 0;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@ a {
   font-size: 2rem;
 
   @include breakpoint(md) {
-    font-size: 4rem;
+    font-size: 3.5rem;
   }
 }
 
@@ -120,7 +120,6 @@ code {
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 3rem;
   max-width: 90vw;
 }
 
