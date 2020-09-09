@@ -17,8 +17,6 @@ const getDocsets = async (filterName) => {
   );
 
   const data = await response.json();
-
-  console.log("data:", Object.keys(data));
   //   return data;
 
   let docsets;

@@ -84,6 +84,10 @@ const Home = ({ repos }) => (
                       <strong>Feed URL</strong>:{" "}
                       <a href={"/api/docsets/" + name}>XML</a>
                     </p>
+                    <p>
+                      <strong>Feed URL (.xml)</strong>:{" "}
+                      <a href={"/api/docsets/" + name + ".xml"}>XML</a>
+                    </p>
                   </>
                 )}
               </div>
