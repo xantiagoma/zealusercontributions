@@ -1,5 +1,7 @@
 import Head from "next/head";
 import { getDocsets, truncate, getCheatSheets } from "../src/utils";
+import { parseDomain, fromUrl } from "parse-domain";
+import { Fragment } from "react";
 
 const Card = ({
   name,
@@ -15,21 +17,23 @@ const Card = ({
   const authorLink = author && author.link;
   const type = cheatsheet ? "cheatsheets" : "docsets";
   return (
-    <div href="#" className="card" key={name}>
-      <h3 title={name + " @ " + version}>
-        {!!icon && (
-          <>
-            <img
-              src={"data:image/png;base64," + icon}
-              alt={name + " icon"}
-              title={name + " icon"}
-            />
-            &nbsp;
-          </>
-        )}
-        {truncate(name, 20)} <br />
-        <small>version: {truncate(version, 7)}</small>
-      </h3>
+    <div href={"#" + type + "-" + name} className="card" id={type + "-" + name}>
+      <a href={"#" + type + "-" + name}>
+        <h3 title={name + " @ " + version}>
+          {!!icon && (
+            <>
+              <img
+                src={"data:image/png;base64," + icon}
+                alt={name + " icon"}
+                title={name + " icon"}
+              />
+              &nbsp;
+            </>
+          )}
+          {truncate(name, 20)} <br />
+          <small>version: {truncate(version, 7)}</small>
+        </h3>
+      </a>
       {author && (
         <p>
           <strong>Author</strong>: <a href={authorLink}>{authorName}</a>
@@ -37,11 +41,16 @@ const Card = ({
       )}
       <p>
         <strong>Download</strong>:&nbsp;
-        {urls.map((url, index) => (
-          <a key={url} href={url} download={true}>
-            mirror#{index + 1}&nbsp;
-          </a>
-        ))}
+        {urls.map((url) => {
+          const city = parseDomain(fromUrl(url)).subDomains[0];
+          return (
+            <Fragment key={url}>
+              <a key={url} href={url} download={true}>
+                {city || "main"}
+              </a>{" "}
+            </Fragment>
+          );
+        })}
       </p>
       <p>
         <strong>Feed URL</strong>: <a href={`/api/${type}/` + name}>XML</a>
@@ -97,16 +106,20 @@ const Home = ({ repos, cheatsheets }) => (
         </strong>{" "}
         instead.
       </code>
-      <h2>User Contributed:</h2>
+      <a href="#docsets">
+        <h2 id="docsets">Docsets:</h2>
+      </a>
       <div className="grid">
         {repos.map((e) => (
-          <Card {...e} />
+          <Card {...e} key={"docsets-" + e.name} />
         ))}
       </div>
-      <h2>Cheat Sheets:</h2>
+      <a href="#cheatsheets">
+        <h2 id="cheatsheets">Cheat Sheets:</h2>
+      </a>
       <div className="grid">
         {cheatsheets.map((e) => (
-          <Card {...e} cheatsheet={true} />
+          <Card {...e} cheatsheet={true} key={"cheatsheets-" + e.name} />
         ))}
       </div>
     </main>
