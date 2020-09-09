@@ -35,6 +35,15 @@ const Home = ({ repos }) => (
       <p className="description">
         Non-Official Zeal User Contributions Repository
       </p>
+      <code>
+        Often Heroku's free hours are exceeded, please use{" "}
+        <strong>
+          <a href="https://zealusercontributions.now.sh/">
+            zealusercontributions.now.sh
+          </a>
+        </strong>{" "}
+        instead.
+      </code>
       <div className="grid">
         {repos.map(
           ({
@@ -96,7 +105,7 @@ const Home = ({ repos }) => (
     </main>
 
     <footer>
-      Create by &nbsp;
+      Create by
       <a href="https://github.com/xantiagoma">
         <code>xantiagoma</code>
       </a>
