@@ -32,6 +32,10 @@ body {
 
 * {
   box-sizing: border-box;
+
+  &:focus {
+    outline: thin dotted;
+  }
 }
 
 .container {
@@ -164,4 +168,32 @@ a:focus {
     width: 100%;
     flex-direction: column;
   }
+}
+
+.navigation {
+  &,
+  ul,
+  li,
+  a {
+    display: inline-block;
+  }
+
+  a {
+    padding: 1rem 3rem;
+    border: 1px solid;
+    margin-right: 1rem;
+  }
+}
+
+.back-to-top {
+  background: white;
+  border: 1px solid;
+  height: 2.5rem;
+  width: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
 }

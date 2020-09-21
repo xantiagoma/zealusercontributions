@@ -2,6 +2,7 @@ import Head from "next/head";
 import { getDocsets, truncate, getCheatSheets } from "../src/utils";
 import { parseDomain, fromUrl } from "parse-domain";
 import { Fragment } from "react";
+import ChevronUpIcon from "../assets/chevron-up.svg";
 
 const Card = ({
   name,
@@ -30,8 +31,8 @@ const Card = ({
               &nbsp;
             </>
           )}
-          {truncate(name, 20)} <br />
-          <small>version: {truncate(version, 7)}</small>
+          {name} <br />
+          <small>version: {version}</small>
         </h3>
       </a>
       {author && (
@@ -97,6 +98,16 @@ const Home = ({ repos, cheatsheets }) => (
       <p className="description">
         Non-Official Zeal User Contributions (& Cheat Sheets) Repository
       </p>
+      <nav className="navigation">
+        <ul>
+          <li>
+            <a href="#docsets">Docsets</a>
+          </li>
+          <li>
+            <a href="#cheatsheets">Cheat Sheets</a>
+          </li>
+        </ul>
+      </nav>
       <code>
         Often Heroku's free hours are exceeded, please use{" "}
         <strong>
@@ -130,6 +141,10 @@ const Home = ({ repos, cheatsheets }) => (
         <code>xantiagoma</code>
       </a>
     </footer>
+
+    <button className="back-to-top" onClick={() => window.scrollTo(0, 0)}>
+      <img src={ChevronUpIcon} />
+    </button>
   </div>
 );
 
