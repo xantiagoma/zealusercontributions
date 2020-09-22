@@ -172,16 +172,27 @@ a:focus {
 
 .navigation {
   &,
-  ul,
   li,
   a {
     display: inline-block;
   }
 
+  ul {
+    display: flex;
+    padding: 0;
+  }
+
+  li {
+    margin-right: 1rem;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+
   a {
     padding: 1rem 3rem;
     border: 1px solid;
-    margin-right: 1rem;
   }
 }
 
