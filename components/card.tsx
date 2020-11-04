@@ -37,8 +37,8 @@ export default function Card({
 		const city = urlData.subDomains[0];
 		return (
 			<li key={url} className="pl-4">
-				<a key={url} href={url} download={true} className="flex hover:text-blue-700">
-					<svg className="w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+				<a key={url} href={url} download={true} className="flex hover:text-blue-700 items-center">
+					<svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path
 							strokeLinecap="round"
 							strokeLinejoin="round"
@@ -85,11 +85,11 @@ export default function Card({
 				<ul className="flex flex-row mt-2">
 					<li>
 						<a
-							className="flex transition duration-150 bg-gray-200 p-2 mr-2 hover:text-blue-700 rounded-lg hover:bg-gray-300"
+							className="flex transition duration-150 bg-gray-200 p-2 mr-2 hover:text-blue-700 rounded-lg hover:bg-gray-300 items-center"
 							target="_blank"
 							href={`/api/${type}/` + name + '.xml'}
 						>
-							<svg viewBox="0 0 24 24" className="w-4">
+							<svg viewBox="0 0 24 24" className="w-4 h-4">
 								<path
 									fill="currentColor"
 									d="M8.5,18.31L5.69,15.5L12.06,9.12H7.11V5.69H18.31V16.89H14.89V11.94L8.5,18.31Z"
@@ -100,11 +100,11 @@ export default function Card({
 					</li>
 					<li>
 						<a
-							className="flex bg-gray-200 p-2 hover:text-blue-700 rounded-lg hover:bg-gray-300"
+							className="flex bg-gray-200 p-2 hover:text-blue-700 rounded-lg hover:bg-gray-300 items-center"
 							target="_blank"
 							href={`/api/${type}/` + name + '.json'}
 						>
-							<svg viewBox="0 0 24 24" className="w-4">
+							<svg viewBox="0 0 24 24" className="w-4 h-4">
 								<path
 									fill="currentColor"
 									d="M8.5,18.31L5.69,15.5L12.06,9.12H7.11V5.69H18.31V16.89H14.89V11.94L8.5,18.31Z"

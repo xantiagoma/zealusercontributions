@@ -99,8 +99,8 @@ export default function Home() {
 				<div className="flex flex-col sm:flex-row container mx-auto px-4">
 					<ul className="flex justify-center py-4">
 						<li>
-							<a className="flex text-lg mr-4 hover:text-blue-700" href="#docsets">
-								<svg className="w-4 mr-1" viewBox="0 0 24 24">
+							<a className="flex text-lg mr-4 hover:text-blue-700 items-center" href="#docsets">
+								<svg className="w-4 h-4 mr-1" viewBox="0 0 24 24">
 									<path
 										fill="currentColor"
 										d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
@@ -110,8 +110,8 @@ export default function Home() {
 							</a>
 						</li>
 						<li>
-							<a className="flex text-lg mr-4 hover:text-blue-700" href="#cheatsheets">
-								<svg className="w-4 mr-1" viewBox="0 0 24 24">
+							<a className="flex text-lg mr-4 hover:text-blue-700 items-center" href="#cheatsheets">
+								<svg className="w-4 h-4 mr-1" viewBox="0 0 24 24">
 									<path
 										fill="currentColor"
 										d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
@@ -121,8 +121,8 @@ export default function Home() {
 							</a>
 						</li>
 						<li>
-							<a className="flex text-lg hover:text-blue-700" href="#usage">
-								<svg className="w-4 mr-1" viewBox="0 0 24 24">
+							<a className="flex text-lg hover:text-blue-700 items-center" href="#usage">
+								<svg className="w-4 h-4 mr-1" viewBox="0 0 24 24">
 									<path
 										fill="currentColor"
 										d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
