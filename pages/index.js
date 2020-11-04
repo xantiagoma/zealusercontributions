@@ -136,7 +136,7 @@ const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
 				<div className="px-4">
 					<p>Go ➡ Settings ➡ Docsets ➡ Add feed</p>
 					<p>Paste Docset / Cheatsheet XML url</p>
-					<img src="/Zeal_Download.png" width="960" height="718" alt="Screenshot" />
+					<img src="/Zeal_Download.png" width="960" height="718" alt="Screenshot Zeal" />
 					<h3 className="text-xl">Other endpoints</h3>
 					<ul>
 						<li className="ml-4">
