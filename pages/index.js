@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import { getDocsets, getCheatSheets } from '../src/utils';
 import { Fragment, useEffect, useState } from 'react';
-import Image from 'next/image';
 import Fuse from 'fuse.js';
 import debounce from 'lodash/debounce';
 

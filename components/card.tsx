@@ -38,13 +38,7 @@ export default function Card({
 		return (
 			<li key={url} className="pl-4">
 				<a key={url} href={url} download={true} className="flex hover:text-blue-700">
-					<svg
-						className="w-4"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-						stroke="currentColor"
-					>
+					<svg className="w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path
 							strokeLinecap="round"
 							strokeLinejoin="round"

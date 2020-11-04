@@ -29,7 +29,7 @@ const getCheatSheets = async (filterName) => {
 		object.name = key;
 		object.archive = `${key}.tgz`;
 		object.urls = CDNs.map((city) => {
-			return `http://${city}kapeli.com/feeds/zzz/cheatsheets/${key}.tgz`;
+			return `https://${city}kapeli.com/feeds/zzz/cheatsheets/${key}.tgz`;
 		});
 
 		return object;
@@ -39,7 +39,7 @@ const getCheatSheets = async (filterName) => {
 };
 
 const getDocsets = async (filterName) => {
-	const response = await fetch(`http://kapeli.com/feeds/zzz/user_contributed/build/index.json`);
+	const response = await fetch(`https://kapeli.com/feeds/zzz/user_contributed/build/index.json`);
 
 	const data = await response.json();
 	//   return data;
@@ -63,7 +63,7 @@ const getDocsets = async (filterName) => {
 		const object = { ...val };
 		object.name = key;
 		object.urls = CDNs.map((city) => {
-			return `http://${city}kapeli.com/feeds/zzz/user_contributed/build/${key}/${val.archive}`;
+			return `https://${city}kapeli.com/feeds/zzz/user_contributed/build/${key}/${val.archive}`;
 		});
 
 		return object;
