@@ -1,15 +1,45 @@
 import Head from 'next/head';
-import { getDocsets, getCheatSheets } from '../src/utils';
 import { Fragment, useEffect, useState } from 'react';
 import Fuse from 'fuse.js';
 import debounce from 'lodash/debounce';
+import get from 'lodash/get';
+import useSWR from 'swr';
 
-import Footer from '../components/footer.tsx';
-import Card from '../components/card.tsx';
-import Grid from '../components/grid.tsx';
-import Title from '../components/title.tsx';
+import Footer from '../components/footer';
+import Card from '../components/card';
+import Grid from '../components/grid';
+import Title from '../components/title';
 
-const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
+import ReactLoading from 'react-loading';
+
+function useDocsets() {
+	const { data, error } = useSWR('/api/docsets');
+	return {
+		data,
+		isLoading: !error && !data,
+		isError: error
+	};
+}
+
+function useCheatsheets() {
+	const { data, error } = useSWR('/api/cheatsheets');
+	return {
+		data,
+		isLoading: !error && !data,
+		isError: error
+	};
+}
+
+const loading = (
+	<div className="flex justify-center items-center">
+		<ReactLoading type="bubbles" color="black" />
+	</div>
+);
+
+export default function Home() {
+	const docsetsData = useDocsets();
+	const cheatsheetsData = useCheatsheets();
+
 	const [ input, setInput ] = useState('');
 	const [ computedRepos, setComputedRepos ] = useState([]);
 	const [ computedCheatSheets, setComputedCheatSheets ] = useState([]);
@@ -18,18 +48,19 @@ const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
 		const options = {
 			keys: [ 'name' ]
 		};
-		const computedRepos = new Fuse(oRepos, options).search(input).map((e) => e.item);
-		const computedCheatSheets = new Fuse(oCheatsheets, options).search(input).map((e) => e.item);
+		const computedRepos = new Fuse(get(docsetsData, 'data', []), options).search(input).map((e) => e.item);
+		const computedCheatSheets = new Fuse(get(cheatsheetsData, 'data', []), options)
+			.search(input)
+			.map((e) => e.item);
 
 		setComputedRepos(computedRepos);
 		setComputedCheatSheets(computedCheatSheets);
-		// setQ(input);
 	}, 250);
 
 	useEffect(fSearch, [ input ]);
 
-	const repos = !input ? oRepos : computedRepos;
-	const cheatsheets = !input ? oCheatsheets : computedCheatSheets;
+	const docsets = !input ? docsetsData.data : computedRepos;
+	const cheatsheets = !input ? cheatsheetsData.data : computedCheatSheets;
 
 	return (
 		<Fragment>
@@ -57,7 +88,7 @@ const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
 				<span className="ml-1">instead.</span>
 			</div>
 			<div className="flex flex-col text-center justify-center content-center">
-				<img src="/favicon-192.png" alt="Zeal Logo" className="logo w-32 self-center py-4" />
+				<img src="/favicon-192.png" alt="Zeal Logo" className="logo w-32 self-center py-8" />
 				<h1>
 					<span className="block text-2xl">Welcome to</span>
 					<span className="block text-4xl">Zeal User Contributions</span>
@@ -115,7 +146,6 @@ const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
 								<svg
 									className="h-4 w-4 fill-current"
 									viewBox="0 0 56.966 56.966"
-									style={{ enableBackground: 'new 0 0 56.966 56.966' }}
 									xmlSpace="preserve"
 									width="512px"
 									height="512px"
@@ -129,9 +159,15 @@ const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
 			</nav>
 			<main className="container mx-auto">
 				<Title id="docsets" text="Docsets" />
-				<Grid>{repos.map((e) => <Card {...e} key={'docsets-' + e.name} />)}</Grid>
+				{!docsetsData.isLoading && <Grid>{docsets.map((e) => <Card {...e} key={'docsets-' + e.name} />)}</Grid>}
+				{docsetsData.isLoading && loading}
 				<Title id="cheatsheets" text="Cheat Sheets" />
-				<Grid>{cheatsheets.map((e) => <Card {...e} cheatsheet={true} key={'cheatsheets-' + e.name} />)}</Grid>
+				{!cheatsheetsData.isLoading && (
+					<Grid>
+						{cheatsheets.map((e) => <Card {...e} cheatsheet={true} key={'cheatsheets-' + e.name} />)}
+					</Grid>
+				)}
+				{cheatsheetsData.isLoading && loading}
 				<Title id="usage" text="Usage" />
 				<div className="px-4">
 					<p>Go ➡ Settings ➡ Docsets ➡ Add feed</p>
@@ -163,12 +199,4 @@ const Home = ({ repos: oRepos, cheatsheets: oCheatsheets }) => {
 			</button>
 		</Fragment>
 	);
-};
-
-Home.getInitialProps = async () => {
-	const repos = await getDocsets();
-	const cheatsheets = await getCheatSheets();
-	return { repos, cheatsheets };
-};
-
-export default Home;
+}
