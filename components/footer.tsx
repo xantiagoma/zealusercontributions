@@ -1,10 +1,19 @@
 export default function Footer() {
 	return (
-		<footer className="flex flex-row items-center justify-center py-2">
-			Create by
-			<a href="https://github.com/xantiagoma" className="ml-2">
-				<code>xantiagoma</code>
-			</a>
+		<footer className="flex flex-col items-center justify-center py-4">
+			<p>
+				Create by
+				<a href="https://github.com/xantiagoma" className="ml-2 hover:text-blue-700">
+					<code>xantiagoma</code>
+				</a>
+			</p>
+			<p>
+				Thanks to{' '}
+				<a href="https://kapeli.com/dash" target="_blank" className="hover:text-blue-700">
+					Kapeli
+				</a>{' '}
+				❤️ (CDN, Docsets, Public Feed...)
+			</p>
 		</footer>
 	);
 }
