@@ -16,7 +16,7 @@
     "autoprefixer": "^9.8.6",
     "fuse.js": "^6.4.1",
     "json5": "^2.1.3",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "next": "^10.0.1",
     "next-images": "^1.6.2",
     "parse-domain": "^3.0.3",
