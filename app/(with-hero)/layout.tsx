@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin", "latin-ext"],
 });
 
 export default function RootLayout({

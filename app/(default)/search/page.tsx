@@ -5,6 +5,8 @@ import Fuse from "fuse.js";
 import Grid from "@/components/Grid";
 import Title from "@/components/Title";
 
+export const revalidate = 0;
+
 export default async function Search({
   searchParams,
 }: {
@@ -13,7 +15,7 @@ export default async function Search({
 }) {
   const { q } = searchParams;
 
-  const query = q.trim();
+  const query = q?.trim();
 
   if (!query) {
     return <>Start Searching...</>;
