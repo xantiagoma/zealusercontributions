@@ -6,7 +6,7 @@ export default function Navbar({ isHome = false }: { isHome?: boolean }) {
   return (
     <nav className="flex bg-gray-200 sm:sticky sm:top-0 shadow-xs z-10">
       <div className="flex flex-col sm:flex-row container mx-auto px-4">
-        <ul className="flex justify-center py-4">
+        <ul className="flex justify-center py-4 items-center">
           <li>
             <Link
               className="flex text-lg mr-4 hover:text-blue-700 items-center"
@@ -41,7 +41,7 @@ export default function Navbar({ isHome = false }: { isHome?: boolean }) {
                   href="/docs"
                 >
                   <FcInfo />
-                  Docs
+                  <span className="hidden sm:inline">Docs</span>
                 </Link>
               </li>
             </>
