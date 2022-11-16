@@ -35,7 +35,6 @@ export default async function Search({
 
   return (
     <>
-      Search for {query}
       <Title text="Docsets" id="#docsets" />
       <Grid>
         {docsets.map((e) => (
@@ -48,18 +47,6 @@ export default async function Search({
           <Card {...e} cheatsheet key={"docsets-" + e.name} />
         ))}
       </Grid>
-      <pre>
-        {JSON.stringify(
-          {
-            docsets: docsets.length,
-            _docsets: _docsets.length,
-            cheatsheets: cheatsheets.length,
-            _cheatsheets: _cheatsheets.length,
-          },
-          null,
-          2
-        )}
-      </pre>
     </>
   );
 }
