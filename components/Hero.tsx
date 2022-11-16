@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <div className="flex flex-col text-center justify-center content-center">
+    <div className="flex flex-col text-center justify-center content-center mb-8">
       <Link href="/" className="inline-block w-fit mx-auto">
         <img
           src="/favicon-192.png"

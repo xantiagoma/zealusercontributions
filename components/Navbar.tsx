@@ -1,6 +1,8 @@
+import { FcBookmark, FcDocument, FcInfo } from "react-icons/fc";
+
 import Link from "next/link";
 
-export default function Navbar() {
+export default function Navbar({ isHome = false }: { isHome?: boolean }) {
   return (
     <nav className="flex bg-gray-200 sm:sticky sm:top-0 shadow-xs z-10">
       <div className="flex flex-col sm:flex-row container mx-auto px-4">
@@ -13,48 +15,37 @@ export default function Navbar() {
               Home
             </Link>
           </li>
-          <li>
-            <Link
-              className="flex text-lg mr-4 hover:text-blue-700 items-center"
-              href="/docsets"
-            >
-              <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
-                />
-              </svg>
-              Docsets
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex text-lg mr-4 hover:text-blue-700 items-center"
-              href="/cheatsheets"
-            >
-              <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
-                />
-              </svg>
-              Cheat Sheets
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="flex text-lg hover:text-blue-700 items-center"
-              href="/docs"
-            >
-              <svg className="w-4 h-4 mr-1" viewBox="0 0 24 24">
-                <path
-                  fill="currentColor"
-                  d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,9A3,3 0 0,1 15,12A3,3 0 0,1 12,15A3,3 0 0,1 9,12A3,3 0 0,1 12,9Z"
-                />
-              </svg>
-              Docs
-            </Link>
-          </li>
+          {!isHome && (
+            <>
+              <li>
+                <Link
+                  className="flex text-lg mr-4 hover:text-blue-700 items-center"
+                  href="/docsets"
+                >
+                  <FcDocument />
+                  Docsets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex text-lg mr-4 hover:text-blue-700 items-center"
+                  href="/cheatsheets"
+                >
+                  <FcBookmark />
+                  Cheat Sheets
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="flex text-lg hover:text-blue-700 items-center"
+                  href="/docs"
+                >
+                  <FcInfo />
+                  Docs
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
         <div className="flex justify-center content-center sm:ml-auto items-center pb-4 sm:pb-0">
           <form action="/search" method="GET" role="search">

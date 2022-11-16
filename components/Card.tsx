@@ -56,8 +56,8 @@ export default function Card({
           href={url}
           download={true}
           className="flex items-center py-1 px-2 bg-gray-100 hover:bg-gray-200 transition-colors text-xs rounded-sm"
-          title={`Download .tgz docset from ${city}`}
-          aria-label={`Download .tgz docset from ${city}`}
+          title={`Download .tgz docset from ${city ?? "main"}`}
+          aria-label={`Download .tgz docset from ${city ?? "main"}`}
         >
           {cityCodes[city] || "λ"}
         </a>{" "}
@@ -82,9 +82,12 @@ export default function Card({
           <BsCircle className="w-10 h-10 mb-auto fill-slate-400" />
         )}
         {author && (
-          <a href={authorLink} className="text-sm -mb-1 opacity-25">
-            by {authorName}
-          </a>
+          <span className="text-sm -mb-1 text-slate-300">
+            by{" "}
+            <a href={authorLink} className="hover:text-slate-400">
+              {authorName}
+            </a>
+          </span>
         )}
         <p className="text-xl font-bold flex flex-wrap mb-2">
           <span
