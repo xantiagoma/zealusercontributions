@@ -91,12 +91,14 @@ export default function Card({
         )}
         <p className="text-xl font-bold flex flex-wrap mb-2">
           <span
-            className="truncate max-w-[248px]"
+            className="truncate max-w-[200px] md:max-w-[248px]"
             title={name?.replaceAll("_", " ")}
           >
             {name?.replaceAll("_", " ")}
           </span>
-          <span className="truncate max-w-[248px]">@{version}</span>
+          <span className="truncate max-w-[200px] md:max-w-[248px]">
+            @{version}
+          </span>
         </p>
         <ul className="flex gap-2 flex-wrap">
           <li className="flex">
