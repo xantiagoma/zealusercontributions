@@ -1,53 +1,52 @@
-import { FcBookmark, FcDocument, FcInfo } from "react-icons/fc";
+import { FcBookmark, FcDocument, FcHome, FcInfo } from "react-icons/fc";
 
 import Link from "next/link";
 
 export default function Navbar({ isHome = false }: { isHome?: boolean }) {
   return (
-    <nav className="flex bg-gray-200 sm:sticky sm:top-0 shadow-xs z-10">
+    <nav className="flex bg-gray-200 sm:sticky sm:top-0 shadow-xs z-10 py-2">
       <div className="flex flex-col sm:flex-row container mx-auto px-4">
-        <ul className="flex justify-center py-4 items-center">
-          <li>
-            <Link
-              className="flex text-lg mr-4 hover:text-blue-700 items-center"
-              href="/"
-            >
-              Home
-            </Link>
-          </li>
-          {!isHome && (
-            <>
-              <li>
-                <Link
-                  className="flex text-lg mr-4 hover:text-blue-700 items-center"
-                  href="/docsets"
-                >
-                  <FcDocument />
-                  Docsets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex text-lg mr-4 hover:text-blue-700 items-center"
-                  href="/cheatsheets"
-                >
-                  <FcBookmark />
-                  Cheat Sheets
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex text-lg hover:text-blue-700 items-center"
-                  href="/docs"
-                >
-                  <FcInfo />
-                  <span className="hidden sm:inline">Docs</span>
-                </Link>
-              </li>
-            </>
-          )}
-        </ul>
-        <div className="flex justify-center content-center sm:ml-auto items-center pb-4 sm:pb-0">
+        {!isHome && (
+          <ul className="flex py-2 items-center justify-between sm:justify-center gap-4">
+            <li>
+              <Link
+                className="flex gap-1 text-lg hover:text-blue-700 items-center"
+                href="/"
+              >
+                <FcHome />
+                <span className="hidden sm:inline">Home</span>
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-1 text-lg hover:text-blue-700 items-center"
+                href="/docsets"
+              >
+                <FcDocument />
+                Docsets
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-1 text-lg hover:text-blue-700 items-center"
+                href="/cheatsheets"
+              >
+                <FcBookmark />
+                Cheat Sheets
+              </Link>
+            </li>
+            <li>
+              <Link
+                className="flex gap-1 text-lg hover:text-blue-700 items-center"
+                href="/docs"
+              >
+                <FcInfo />
+                <span className="hidden sm:inline">Docs</span>
+              </Link>
+            </li>
+          </ul>
+        )}
+        <div className="flex justify-center content-center sm:ml-auto items-center py-2 sm:py-0">
           <form action="/search" method="GET" role="search">
             <div className="relative text-gray-600">
               <input

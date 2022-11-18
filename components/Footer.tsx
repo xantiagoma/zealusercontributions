@@ -3,7 +3,7 @@ import ScrollTop from "@/components/ScrollTop";
 export default function Footer() {
   return (
     <>
-      <footer className="flex flex-col items-center justify-center py-4 text-center">
+      <footer className="bg-slate-50 flex flex-col items-center justify-center p-4 text-center mt-auto">
         <p>
           Create by
           <a
