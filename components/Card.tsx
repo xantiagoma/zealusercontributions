@@ -96,7 +96,7 @@ export default function Card({
           >
             {name?.replaceAll("_", " ")}
           </span>
-          <span>@{version}</span>
+          <span className="truncate max-w-[248px]">@{version}</span>
         </p>
         <ul className="flex gap-2 flex-wrap">
           <li className="flex">
