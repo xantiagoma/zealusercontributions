@@ -21,12 +21,12 @@ export const ThemeSwitcher = () => {
 					className="p-0 size-10 min-w-fit"
 					suppressHydrationWarning
 				>
-					{theme === "system" ? (
-						<IoContrast suppressHydrationWarning />
+					{theme === "light" ? (
+						<IoSunny suppressHydrationWarning />
 					) : theme === "dark" ? (
 						<IoMoon suppressHydrationWarning />
 					) : (
-						<IoSunny suppressHydrationWarning />
+						<IoContrast suppressHydrationWarning />
 					)}
 				</Button>
 			</DropdownTrigger>
