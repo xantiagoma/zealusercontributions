@@ -80,7 +80,7 @@ export default function Navbar() {
 						<input
 							type="search"
 							name="q"
-							className="bg-gray-100 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none max-w-48 dark:bg-gray-800 dark:text-gray-200"
+							className="bg-gray-100/50 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none max-w-48 dark:bg-gray-800/40 dark:text-gray-200 shadow-white shadow-small dark:shadow-black"
 							placeholder="Search..."
 						/>
 						<button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
