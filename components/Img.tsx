@@ -26,30 +26,23 @@ type ImgProps = ComponentProps<"img"> & {
 };
 
 const Img = forwardRef<HTMLImageElement, ImgProps>(
-	({ fallback = null, forceFallbackIfNotSrc, ...props }, ref) => {
+	({ fallback = null, forceFallbackIfNotSrc, onError, ...props }, ref) => {
 		/**
 		 * is our image broken?
 		 */
 		const [isBroken, setIsBroken] = useState(false);
 
-		function handleError() {
-			// console.log("handleError", props.src);
+		const handleError: ImgProps["onError"] = (e) => {
 			setIsBroken(true);
-		}
+			onError?.(e);
+		};
 
 		if (isBroken || (forceFallbackIfNotSrc && !props.src)) {
 			return <>{fallback}</>;
 		}
 
-		// biome-ignore lint/a11y/useAltText: <explanation>
-		return (
-			<img
-				ref={ref}
-				onError={handleError}
-				// onLoad={(e) => console.log("onLoad", props.src, e)}
-				{...props}
-			/>
-		);
+		// biome-ignore lint/a11y/useAltText: Parent should provide alt text
+		return <img ref={ref} onError={handleError} {...props} />;
 	},
 );
 

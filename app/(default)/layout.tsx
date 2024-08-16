@@ -12,12 +12,11 @@ const inter = Inter({
 
 export default function RootLayout({
 	children,
-	...rest
 }: {
 	children: React.ReactNode;
 }) {
 	return (
-		<html lang="en" className={inter.variable}>
+		<html lang="en" className={inter.variable} suppressHydrationWarning>
 			<head>
 				<title>Zeal User Contributions & Cheat Sheets</title>
 				<meta

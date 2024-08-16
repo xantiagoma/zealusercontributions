@@ -13,6 +13,7 @@ import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export default function Navbar() {
 	const pathname = usePathname();
@@ -79,7 +80,7 @@ export default function Navbar() {
 						<input
 							type="search"
 							name="q"
-							className="bg-gray-100 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none max-w-56"
+							className="bg-gray-100 h-10 px-5 pr-10 rounded-full text-sm focus:outline-none max-w-48"
 							placeholder="Search..."
 						/>
 						<button type="submit" className="absolute right-0 top-0 mt-3 mr-4">
@@ -87,6 +88,7 @@ export default function Navbar() {
 						</button>
 					</div>
 				</form>
+				<ThemeSwitcher />
 			</NavbarContent>
 			<NavbarMenu className="[&_li]:contents [&_a]:p-2 [&_a]:w-full">
 				{items}
